@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">KitchenWombat</string>
+    <string name="app_name_display">Kitchen Wombat</string>
+    <string name="recipes_main_button">Recipes</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_recipe_database">RecipeDatabaseActivity</string>
+</resources>
