@@ -1,14 +1,19 @@
 package com.mattwilsoncp16.kitchenwombat;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -168,13 +173,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goRecipesActivity(View view){
-
-        RecipeDataSource datasource = new RecipeDataSource(this);
-        datasource.open();
-        datasource.createRecipe("Testing");
-        datasource.close();
-
         Intent intent = new Intent(getApplicationContext(), RecipesActivity.class);
         startActivity(intent);
     }
+
+    public void ImportRecipes(View view){
+        DownloadWebpageTask dltask =  new DownloadWebpageTask();
+        dltask.execute("http://192.168.1.139:3000/recipes.json");
+        try {
+            Object result = dltask.get();
+        }catch (Exception e) {
+
+        }
+    }
+
+    private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+
+            try {
+                InternetFunctions ifunc = new InternetFunctions();
+                String json_response = ifunc.downloadUrl(urls[0]);
+                RecipeDataSource rdata = new RecipeDataSource(getApplicationContext());
+                rdata.ImportJson(json_response);
+                return "Success";
+            } catch (IOException e) {
+                return "Unable to retrieve web page. URL may be invalid.";
+            }
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+        }
+
+    }
+
 }
