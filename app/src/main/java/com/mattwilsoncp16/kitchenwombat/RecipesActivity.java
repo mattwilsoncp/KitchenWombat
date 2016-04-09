@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.IOException;
@@ -128,6 +130,17 @@ public class RecipesActivity extends AppCompatActivity {
         RecipeListAdapter adapter=new RecipeListAdapter(this, recipes);
         ListView list = (ListView) findViewById(R.id.listRecipes);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), EditRecipeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -186,5 +199,7 @@ public class RecipesActivity extends AppCompatActivity {
     public void goMainActivity(View view){
         finish();
     }
+
+
 
 }

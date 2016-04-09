@@ -7,4 +7,11 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_recipe_database">Recipes</string>
+    <string name="title_activity_configure">ConfigureActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_edit_recipe">EditRecipeActivity</string>
 </resources>
