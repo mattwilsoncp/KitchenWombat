@@ -122,38 +122,13 @@ public class RecipesActivity extends AppCompatActivity {
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
+        RecipeDataSource datasource = new RecipeDataSource(this);
 
-
-        //ArrayList<HashMap<String,String>> recipes = datasource.getAllRecipes();
-        //RecipeListAdapter adapter=new RecipeListAdapter(this, recipes);
-        //ListView list = (ListView) findViewById(R.id.listRecipes);
-        //list.setAdapter(adapter);
-
-
-      //  new DownloadWebpageTask().execute("http://192.168.1.139:3000/recipes.json");
-      //  String json = datasource.ImportRecipes();
-
+        ArrayList<HashMap<String,String>> recipes = datasource.getAllRecipes();
+        RecipeListAdapter adapter=new RecipeListAdapter(this, recipes);
+        ListView list = (ListView) findViewById(R.id.listRecipes);
+        list.setAdapter(adapter);
     }
-
-//    private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
-//        dialog = new ProgressDialog(this);
-//
-//        @Override
-//        protected String doInBackground(String... urls) {
-//            try {
-//                datasource = new RecipeDataSource();
-//                datasource.open();
-//                datasource.downloadUrl(urls[0]);
-//                datasource.close();
-//                return "Success";
-//            } catch (IOException e) {
-//                return "Unable to retrieve web page. URL may be invalid.";
-//            }
-//        }
-//
-//    }
-
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

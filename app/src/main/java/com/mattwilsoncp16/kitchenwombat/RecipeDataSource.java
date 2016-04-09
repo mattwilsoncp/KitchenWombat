@@ -55,29 +55,32 @@ public class RecipeDataSource {
         dbHelper.close();
     }
 
-    public Recipe createRecipe(String name) {
-        ContentValues values = new ContentValues();
-        values.put(Recipe.NAME, name);
-        long insertId = database.insert(Recipe.TABLE_NAME, null,
-                values);
-        Cursor cursor = database.query(Recipe.TABLE_NAME,
-                allColumns, Recipe.ID + " = " + insertId, null,
-                null, null, null);
-        cursor.moveToFirst();
-        Recipe newRecipe = cursorToRecipe(cursor);
-        cursor.close();
-        return newRecipe;
+    public void createRecipe(String name, String description) {
+        try {
+            ContentValues values = new ContentValues();
+            values.put(Recipe.NAME, name);
+            values.put(Recipe.DESCRIPTION, description);
+            long insertId = database.insert(Recipe.TABLE_NAME, null,
+                    values);
+            Cursor cursor = database.query(Recipe.TABLE_NAME,
+                    allColumns, Recipe.ID + " = " + insertId, null,
+                    null, null, null);
+            cursor.moveToFirst();
+            this.cursorToRecipe(cursor);
+            cursor.close();
+        }catch (Exception e){
+            Log.d("WOMBAT", "EXCEPTION: " + e);
+        }
     }
 
-    private Recipe cursorToRecipe(Cursor cursor) {
+    private void cursorToRecipe(Cursor cursor) {
         Recipe recipe = new Recipe();
         recipe.setId(cursor.getLong(0));
         recipe.setName(cursor.getString(1));
-        return recipe;
     }
 
     public ArrayList<HashMap<String, String>> getAllRecipes() {
-
+        this.open();
         ArrayList<HashMap<String, String>> recipes = new ArrayList<HashMap<String, String>>();
         Cursor cursor = database.query(Recipe.TABLE_NAME,
                 allColumns, null, null, null, null, null);
@@ -86,21 +89,25 @@ public class RecipeDataSource {
         while (!cursor.isAfterLast()) {
             HashMap<String, String> map = new HashMap<String, String>();
             //map.put("_id", cursor.getLong(0));
-            map.put("title", cursor.getString(1));
+            map.put("name", cursor.getString(1));
             map.put("description", cursor.getString(2));
             recipes.add(map);
             cursor.moveToNext();
         }
         cursor.close();
+        this.close();
         return recipes;
     }
 
     public void ImportJson(String response){
         try {
             JSONArray reader = new JSONArray(response);
-            JSONObject jo = reader.getJSONObject(0);
-            Object test = jo.get("title");
-            Integer x = 1;
+            this.open();
+            for(int i = 0 ; i < reader.length(); i++) {
+                JSONObject jo = reader.getJSONObject(i);
+                this.createRecipe((String) jo.get("title"), (String) jo.get("description"));
+            }
+            this.close();
         }catch(Exception e){
             Log.d("WOMBAT", "Exception: " + e);
         }

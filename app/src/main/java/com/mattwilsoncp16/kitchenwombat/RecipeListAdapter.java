@@ -50,8 +50,8 @@ public class RecipeListAdapter extends BaseAdapter {
         HashMap<String,String> recipe =  data.get(position);
 
         // Setting all values in listview
-        recipe_title.setText("Test");
-        recipe_description.setText("Test Description");
+        recipe_title.setText(data.get(position).get("name"));
+        recipe_description.setText(data.get(position).get("description"));
         recipe_totaltime.setText("00:30");
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
