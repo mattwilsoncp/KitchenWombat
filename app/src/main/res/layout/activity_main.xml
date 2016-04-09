@@ -61,6 +61,14 @@
             android:layout_gravity="center_horizontal|top"
             android:onClick="ImportRecipes" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete Recipes"
+            android:id="@+id/DeleteRecipes"
+            android:layout_gravity="right|top"
+            android:onClick="deleteRecipes" />
+
 
     </FrameLayout>
 

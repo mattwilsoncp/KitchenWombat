@@ -1,7 +1,10 @@
 package com.mattwilsoncp16.kitchenwombat;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -212,6 +215,29 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
         }
+
+    }
+
+    public void deleteRecipes(View view){
+        final Context oldthis = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Delete All Recipes")
+                .setMessage("Are you sure you want to delete everything?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        RecipeDataSource ds = new RecipeDataSource(oldthis);
+                        ds.open();
+                        ds.DeleteAllRows();
+                        ds.close();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
 
     }
 

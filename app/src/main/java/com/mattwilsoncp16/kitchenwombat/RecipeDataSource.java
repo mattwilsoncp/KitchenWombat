@@ -113,5 +113,9 @@ public class RecipeDataSource {
         }
     }
 
+    public void DeleteAllRows(){
+        database.delete(Recipe.TABLE_NAME, null, null);
+    }
+
 
 }
