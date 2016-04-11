@@ -117,5 +117,14 @@ public class RecipeDataSource {
         database.delete(Recipe.TABLE_NAME, null, null);
     }
 
+    public Recipe getRecipe(Long id){
+        Recipe recipe = new Recipe();
+        Cursor cursor = database.query(Recipe.TABLE_NAME, allColumns,  Recipe.ID + " = " + id, null,
+                null, null, null);
+        cursor.moveToFirst();
+        Integer x = 1;
+        return recipe;
+    }
+
 
 }

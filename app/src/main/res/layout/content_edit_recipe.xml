@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.mattwilsoncp16.kitchenwombat.EditRecipeActivity"
-    tools:showIn="@layout/activity_edit_recipe">
-</RelativeLayout>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/ScrollView01"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:scrollbars="vertical">
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
+
+
+
+    <TextView
+        android:id="@+id/TextViewName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Recipe Name"
+        android:textSize="10pt"
+        android:paddingTop="@dimen/abc_text_size_display_4_material">
+    </TextView>
+    <EditText
+        android:id="@+id/EditTextName"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_width="fill_parent">
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="10pt"
+        android:paddingTop="@dimen/abc_text_size_display_1_material" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Total Recipe Time"
+        android:textSize="10pt"
+        android:paddingTop="@dimen/abc_text_size_display_1_material" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:hint="Time as a float" />
+
+</LinearLayout>
+</ScrollView>
+

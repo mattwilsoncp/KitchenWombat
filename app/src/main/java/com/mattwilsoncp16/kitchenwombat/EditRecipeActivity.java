@@ -25,6 +25,14 @@ public class EditRecipeActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Bundle b = getIntent().getExtras();
+        Long id = b.getLong("key");
+        RecipeDataSource ds = new RecipeDataSource(this);
+        ds.open();
+        ds.getRecipe(id);
+        ds.close();
+
     }
 
 }
