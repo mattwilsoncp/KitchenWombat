@@ -48,7 +48,9 @@ public class RecipesActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), EditRecipeActivity.class);
                 Bundle b = new Bundle();
-                b.putLong("key", id);
+                b.putLong("key", parent.getItemIdAtPosition(position));
+
+
                 intent.putExtras(b);
                 startActivity(intent);
             }

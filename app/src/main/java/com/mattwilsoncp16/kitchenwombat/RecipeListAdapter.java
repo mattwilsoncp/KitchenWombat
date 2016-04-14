@@ -34,7 +34,7 @@ public class RecipeListAdapter extends BaseAdapter {
     }
 
     public long getItemId(int position) {
-        return position;
+        return Long.parseLong(data.get(position).get("_id"));
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -47,12 +47,13 @@ public class RecipeListAdapter extends BaseAdapter {
         TextView recipe_totaltime = (TextView)vi.findViewById(R.id.recipe_totaltime);
         //ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
 
-        HashMap<String,String> recipe =  data.get(position);
+       // HashMap<String,String> recipe =  data.get(position);
 
         // Setting all values in listview
         recipe_title.setText(data.get(position).get("name"));
         recipe_description.setText(data.get(position).get("description"));
         recipe_totaltime.setText("00:30");
+
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }

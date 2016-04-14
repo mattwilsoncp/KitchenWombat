@@ -88,7 +88,7 @@ public class RecipeDataSource {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             HashMap<String, String> map = new HashMap<String, String>();
-            //map.put("_id", cursor.getLong(0));
+            map.put("_id", "" + cursor.getLong(0));
             map.put("name", cursor.getString(1));
             map.put("description", cursor.getString(2));
             recipes.add(map);
@@ -122,7 +122,9 @@ public class RecipeDataSource {
         Cursor cursor = database.query(Recipe.TABLE_NAME, allColumns,  Recipe.ID + " = " + id, null,
                 null, null, null);
         cursor.moveToFirst();
-        Integer x = 1;
+        recipe.setId(cursor.getLong(0));
+        recipe.setName(cursor.getString(1));
+        recipe.setDescription(cursor.getString(2));
         return recipe;
     }
 

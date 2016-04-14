@@ -12,14 +12,19 @@ public class Recipe {
 
     private long id;
     private String name;
+    private String description;
 
     public static final String TABLE_NAME = "RECIPES";
+
+    public String getName() { return this.name; }
+    public String getDescription() { return this.description; }
+
 
     public void setId(Long id){
         this.id = id;
     }
-
     public void setName(String name){
         this.name = name;
     }
+    public void setDescription(String description) { this.description = description; }
 }

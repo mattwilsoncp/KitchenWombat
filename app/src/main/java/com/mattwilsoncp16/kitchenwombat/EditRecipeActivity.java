@@ -6,6 +6,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class EditRecipeActivity extends AppCompatActivity {
 
@@ -30,8 +33,14 @@ public class EditRecipeActivity extends AppCompatActivity {
         Long id = b.getLong("key");
         RecipeDataSource ds = new RecipeDataSource(this);
         ds.open();
-        ds.getRecipe(id);
+        Recipe recipe = ds.getRecipe(id);
         ds.close();
+
+        View vi = (View) findViewById(R.id.ScrollView01);
+        TextView recipe_name = (TextView)vi.findViewById(R.id.EditRecipeName);
+        recipe_name.setText(recipe.getName());
+        TextView recipe_description = (TextView)vi.findViewById(R.id.EditRecipeDescription);
+        recipe_description.setText(recipe.getDescription());
 
     }
 

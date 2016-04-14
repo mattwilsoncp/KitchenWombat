@@ -13,7 +13,7 @@ android:scrollbars="vertical">
 
 
     <TextView
-        android:id="@+id/TextViewName"
+        android:id="@+id/EditRecipeNameText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Recipe Name"
@@ -21,7 +21,7 @@ android:scrollbars="vertical">
         android:paddingTop="@dimen/abc_text_size_display_4_material">
     </TextView>
     <EditText
-        android:id="@+id/EditTextName"
+        android:id="@+id/EditRecipeName"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:layout_width="fill_parent">
@@ -38,7 +38,7 @@ android:scrollbars="vertical">
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText" />
+        android:id="@+id/EditRecipeDescription" />
 
     <TextView
         android:id="@+id/textView3"
@@ -51,7 +51,7 @@ android:scrollbars="vertical">
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/EditRecipeTotalTime"
         android:hint="Time as a float" />
 
 </LinearLayout>
